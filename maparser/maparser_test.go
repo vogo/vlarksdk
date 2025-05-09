@@ -24,8 +24,9 @@ import (
 )
 
 type Obj struct {
-	Str string `json:"str" key:"str" parser:"string"`
-	Int int    `json:"int" key:"int" parser:"int"`
+	Str           string `json:"str" key:"str" parser:"string"`
+	Int           int    `json:"int" key:"int" parser:"int"`
+	ArrInt64Value int64  `json:"arr_int64_value" key:"arr_int64_value" parser:"array_first_int64"`
 }
 
 func TestParse(t *testing.T) {
@@ -33,6 +34,9 @@ func TestParse(t *testing.T) {
 	m := map[string]any{
 		"str": "test",
 		"int": 123,
+		"arr_int64_value": []any{
+			int64(456),
+		},
 	}
 
 	err := Parse(obj, m)
@@ -40,4 +44,5 @@ func TestParse(t *testing.T) {
 
 	assert.Equal(t, "test", obj.Str)
 	assert.Equal(t, 123, obj.Int)
+	assert.Equal(t, int64(456), obj.ArrInt64Value)
 }

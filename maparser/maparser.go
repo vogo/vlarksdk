@@ -38,6 +38,7 @@ func init() {
 	SetFieldParser("int", IntValueParser, IntFieldParser)
 	SetFieldParser("float", FloatValueParser, FloatFieldParser)
 	SetFieldParser("array_to_string", ArrayToStringValueParser, ArrayToStringFieldParser)
+	SetFieldParser("array_first_int64", ArrayFirstInt64ValueParser, ArrayFirstInt64FieldParser)
 }
 
 func SetFieldParser(name string, valueParser ValueParser, fieldParser FieldParser) {
@@ -433,4 +434,54 @@ func strToFloat(v string) (float64, error) {
 	}
 
 	return strconv.ParseFloat(v, 64)
+}
+
+func ArrayFirstInt64ValueParser(val any) (any, error) {
+	if val == nil {
+		return int64(0), nil
+	}
+
+	switch v := val.(type) {
+	case []interface{}:
+		if len(v) > 0 {
+			val = v[0]
+		}
+	case []string:
+		if len(v) > 0 {
+			val = v[0]
+		}
+	case []int:
+		if len(v) > 0 {
+			val = v[0]
+		}
+	case []int32:
+		if len(v) > 0 {
+			val = v[0]
+		}
+	case []int64:
+		if len(v) > 0 {
+			val = v[0]
+		}
+	}
+
+	if val == nil {
+		return int64(0), nil
+	}
+
+	return ParseIntField(val)
+}
+
+func ArrayFirstInt64FieldParser(dest reflect.Value, val any) error {
+	if val == nil {
+		return nil
+	}
+
+	value, err := ArrayFirstInt64ValueParser(val)
+	if err != nil {
+		return err
+	}
+
+	dest.SetInt(value.(int64))
+
+	return nil
 }
