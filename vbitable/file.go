@@ -28,7 +28,7 @@ type FileInfo struct {
 	FileToken string  `json:"file_token"`
 	Name      string  `json:"name"`
 	Size      float64 `json:"size"`
-	TempUrl   string  `json:"temp_url"`
+	TmpUrl    string  `json:"tmp_url"`
 	Type      string  `json:"type"`
 	Url       string  `json:"url"`
 }
@@ -48,7 +48,7 @@ func ParseFileInfoMap(m map[string]any) (info *FileInfo, err error) {
 	fileInfo.FileToken = vutil.EnsureMapString(m, "file_token")
 	fileInfo.Name = vutil.EnsureMapString(m, "name")
 	fileInfo.Size = vutil.EnsureMapFloat64(m, "size")
-	fileInfo.TempUrl = vutil.EnsureMapString(m, "temp_url")
+	fileInfo.TmpUrl = vutil.EnsureMapString(m, "tmp_url")
 	fileInfo.Type = vutil.EnsureMapString(m, "type")
 	fileInfo.Url = vutil.EnsureMapString(m, "url")
 
