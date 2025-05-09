@@ -34,4 +34,5 @@ func init() {
 	maparser.SetFieldParser("lark_days", nil, LarkDaysParser)
 	maparser.SetFieldParser("func_int", nil, FuncIntParser)
 	maparser.SetFieldParser("map_field_attach", nil, MapFieldAttachParser)
+	maparser.SetFieldParser("file_array", FileArrayValueParser, FileArrayFieldParser)
 }
