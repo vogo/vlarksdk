@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package vbitableparser
+package vbitable
 
 import "github.com/vogo/vlarksdk/maparser"
 

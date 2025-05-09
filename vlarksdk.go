@@ -24,7 +24,7 @@ import (
 	larkcore "github.com/larksuite/oapi-sdk-go/v3/core"
 
 	_ "github.com/vogo/vlarksdk/maparser"
-	_ "github.com/vogo/vlarksdk/vbitable/vbitableparser"
+	_ "github.com/vogo/vlarksdk/vbitable"
 )
 
 var LarkCli *lark.Client
